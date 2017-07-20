@@ -7,6 +7,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 /* ------------------------------ */
+/*           Get routes           */
+/* ------------------------------ */
+const users = require('./routes/users');
+const api = require('./routes/api');
+
+/* ------------------------------ */
 /*            Init app            */
 /* ------------------------------ */
 const app = express();
@@ -16,6 +22,13 @@ const app = express();
 /*              CORS              */
 /* ------------------------------ */
 app.use(cors());
+
+
+/* ------------------------------ */
+/*           Set routes           */
+/* ------------------------------ */
+app.use('/users', users);
+app.use('/api', api);
 
 
 /* ------------------------------ */

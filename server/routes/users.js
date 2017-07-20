@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const User = require('../db/models/user');
 
 // Base users route
 router.get('/', (req, res, next) => {
@@ -8,7 +11,21 @@ router.get('/', (req, res, next) => {
 
 // users/register route
 router.post('/register', (req, res, next) => {
-  res.send('Catch register route');
+  let user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  User.addUser(user, (error, user) => {
+    if(error) {
+      res.json({ success: false, message: 'Failed to add user.'});
+    } else {
+      res.json({ success: true, message: 'Added user successfully.'});
+    }
+  });
 });
 
 // users/login route

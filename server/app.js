@@ -5,60 +5,48 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const dbconfig = require('./db/config');
 
-/* ------------------------------ */
-/*           Get routes           */
-/* ------------------------------ */
+// Get routes
 const users = require('./routes/users');
 const api = require('./routes/api');
 
-/* ------------------------------ */
-/*            Init app            */
-/* ------------------------------ */
+// Init app
 const app = express();
 
+// Connect to database
+mongoose.connect(dbconfig.database);
+mongoose.connection.on('connected', () => {
+  console.log('Connected to database.')
+});
+mongoose.connection.on('error', (error) => {
+  console.log('There is a problem connecting to the database. Error: ' + error);
+});
 
-/* ------------------------------ */
-/*              CORS              */
-/* ------------------------------ */
+// CORS
 app.use(cors());
 
-/* ------------------------------ */
-/*         Set static folder      */
-/* ------------------------------ */
+// Set static folder
 app.use(express.static(path.join(__dirname, '../public/index.html')));
 
-/* ------------------------------ */
-/*           Body parser          */
-/* ------------------------------ */
+// Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-/* ------------------------------ */
-/*           Set routes           */
-/* ------------------------------ */
+// Set routes
 app.use('/users', users);
 app.use('/api', api);
 
-
-/* ------------------------------ */
-/*           Catch routes         */
-/* ------------------------------ */
+// Catch routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-
-/* ------------------------------ */
-/*            Get port            */
-/* ------------------------------ */
+// Get port
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-/* ------------------------------ */
-/*          Create server         */
-/* ------------------------------ */
+// Create server and listen on port
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log('Server is running on localhost:' + port);

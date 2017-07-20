@@ -23,6 +23,17 @@ const app = express();
 /* ------------------------------ */
 app.use(cors());
 
+/* ------------------------------ */
+/*         Set static folder      */
+/* ------------------------------ */
+app.use(express.static(path.join(__dirname, '../public/index.html')));
+
+/* ------------------------------ */
+/*           Body parser          */
+/* ------------------------------ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 /* ------------------------------ */
 /*           Set routes           */
@@ -35,7 +46,7 @@ app.use('/api', api);
 /*           Catch routes         */
 /* ------------------------------ */
 app.get('/', (req, res) => {
-  res.send('root routes');
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 

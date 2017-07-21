@@ -27,7 +27,7 @@ mongoose.connection.on('error', (error) => {
 app.use(cors());
 
 // Set static folder
-app.use(express.static(path.join(__dirname, '../public/index.html')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Body parser
 app.use(bodyParser.json());

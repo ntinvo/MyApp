@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Avenir-Light";
+  src: url("./assets/fonts/Avenir/Avenir-Light.otf") format("otf")
+}
+
+body, html {
+  font-family: 'Avenir-Light';
+}

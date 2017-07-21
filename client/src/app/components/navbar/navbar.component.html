@@ -17,11 +17,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Profile</a></li>
         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#register-modal">Register</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Login -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="loginmodal-container">
@@ -33,7 +35,29 @@
         <input type="submit" name="login" class="login loginmodal-submit" value="Login">
       </form>
       <div class="login-help">
-        <a href="#">Register</a> - <a href="#">Forgot Password</a>
+        <a href="#">Register</a> - <a href="#">Forgot password</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register -->
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="loginmodal-container">
+      <h1>Register</h1>
+      <br>
+      <form>
+        <input type="text" name="firstname" placeholder="First name">
+        <input type="text" name="lastname" placeholder="Last name">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password2" placeholder="Re-type password">
+        <input type="submit" name="login" class="login loginmodal-submit" value="Register">
+      </form>
+      <div class="login-help">
+        Already have an account? - <a href="#">Login</a>
       </div>
     </div>
   </div>

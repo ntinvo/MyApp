@@ -1,6 +1,13 @@
 a:focus {
   outline: none;
 }
+.navbar {
+  margin: 0px;
+  padding: 0px;
+}
+.nav::after {
+  display: none!important;
+}
 .modal {
     text-align: center;
     padding: 0!important;

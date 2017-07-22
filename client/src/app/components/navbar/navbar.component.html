@@ -10,7 +10,7 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li><a href="../help/">Blog</a></li>
+        <li><a [routerLink]="['/blog']">Blog</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" -->
@@ -24,14 +24,20 @@
 </nav>
 
 <!-- Login -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<app-login></app-login>
+<!-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="loginmodal-container">
       <h1>Login</h1>
       <br>
       <form>
-        <input type="text" name="user" placeholder="Email">
-        <input type="password" name="pass" placeholder="* * * * * *">
+        <div class="form-group">
+          <input type="text" name="user" placeholder="Email" required="true">
+        </div>
+        <div class="form-group">
+          <input type="password" name="pass" placeholder="* * * * * *" required="true">
+        </div>
+
         <input type="submit" name="login" class="login loginmodal-submit" value="Login">
       </form>
       <div class="login-help">
@@ -39,21 +45,34 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Register -->
-<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<app-register></app-register>
+<!-- <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="loginmodal-container">
       <h1>Register</h1>
       <br>
       <form>
-        <input type="text" name="firstname" placeholder="First name">
-        <input type="text" name="lastname" placeholder="Last name">
-        <input type="text" name="username" placeholder="Username">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="password2" placeholder="Re-type password">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="firstname" name="firstname" placeholder="First name">
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="lastname" name="lastname" placeholder="Last name">
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="username"  name="username" placeholder="Username" required="true">
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="email"  name="email" placeholder="Email" required="true">
+        </div>
+        <div class="form-group">
+          <input type="password" [(ngModel)]="password"  name="password" placeholder="Password" required="true">
+        </div>
+        <div class="form-group">
+          <input type="password" [(ngModel)]="password2"  name="password2" placeholder="Re-type password" required="true">
+        </div>
         <input type="submit" name="login" class="login loginmodal-submit" value="Register">
       </form>
       <div class="login-help">
@@ -61,4 +80,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

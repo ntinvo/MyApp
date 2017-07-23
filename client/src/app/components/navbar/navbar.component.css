@@ -1,0 +1,4 @@
+.nav>li>a:focus, .nav>li>a:hover {
+  outline: none;
+  border: 0;
+}

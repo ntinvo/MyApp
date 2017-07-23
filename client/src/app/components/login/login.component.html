@@ -11,10 +11,12 @@
           <input type="password" name="pass" placeholder="* * * * * *" required="true">
         </div>
 
-        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+        <button type="submit" name="login" class="login loginmodal-submit"  data-dismiss="modal">Login</button>
+
+        <!-- <input data-dismiss="modal" type="submit" name="login" class="login loginmodal-submit" value="Login"> -->
       </form>
       <div class="login-help">
-        <a href="#">Register</a> - <a href="#">Forgot password</a>
+        <a href="#" data-toggle="modal" data-target="#register-modal" data-dismiss="modal">Register</a> - <a href="#">Forgot password</a>
       </div>
     </div>
   </div>

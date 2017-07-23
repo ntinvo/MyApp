@@ -5,13 +5,13 @@
       <br>
       <form>
         <div class="form-group">
-          <input type="text" name="user" placeholder="Email" required="true">
+          <input type="text" class="form-control" [(ngModel)]="email" name="email" placeholder="Email" required="true">
         </div>
         <div class="form-group">
-          <input type="password" name="pass" placeholder="* * * * * *" required="true">
+          <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="* * * * * *" required="true">
         </div>
 
-        <button type="submit" name="login" class="login loginmodal-submit"  data-dismiss="modal">Login</button>
+        <button type="submit" name="login" class="login loginmodal-submit"  data-dismiss="modal" (click)="loginSubmit()">Login</button>
 
         <!-- <input data-dismiss="modal" type="submit" name="login" class="login loginmodal-submit" value="Login"> -->
       </form>

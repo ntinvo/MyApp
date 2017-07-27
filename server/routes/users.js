@@ -3,11 +3,17 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const User = require('../db/models/user');
+const dbconfig = require('../db/config');
 
 // Base users route
 router.get('/', (req, res, next) => {
   res.send('Catch users route');
 });
+
+// users/profile route
+// router.get('/profile', passport.authenticate(), (req, res, next) => {
+//   res.send('Catch users route');
+// });
 
 // users/register route
 router.post('/register', (req, res, next) => {
@@ -21,21 +27,75 @@ router.post('/register', (req, res, next) => {
 
   User.addUser(user, (error, user) => {
     if(error) {
-      res.json({ success: false, message: 'Failed to add user.'});
+      res.json({
+        success: false,
+        message: 'Failed to add user.'
+      });
     } else {
-      res.json({ success: true, message: 'Added user successfully.'});
+      res.json({
+        success: true,
+        message: 'Added user successfully.'
+      });
     }
   });
 });
 
-// users/login route
-router.get('/login', (req, res, next) => {
-  res.send('Catch login route');
+
+// Passport functions
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
-// users/profile route
-router.get('/profile', (req, res, next) => {
-  res.send('Catch users route');
+passport.deserializeUser(function(id, done) {
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+// Login
+router.post('/login', function(req, res, next) {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // Get user by email
+    User.getUserByEmail(email, (error, user) => {
+      if(error) {
+        throw error;
+      }
+      if(!user) {
+        return res.json({
+          success: false, message: 'User not found'
+        });
+      }
+
+    // Compare password
+    User.comparePasswords(password, user.password, (error, isMatch) => {
+      if(error) {
+        throw error;
+      }
+      if(isMatch) {
+        const token = jwt.sign(user, dbconfig.secret, {
+          expiresIn: 259200 // 3 days
+        });
+
+        return res.json({
+          success: true,
+          token: 'MYAPP ' + token,
+          user: {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+            username: user.username
+          }
+        });
+      } else {
+        return res.json({
+          success: false,
+          message: 'Wrong password'
+        });
+      }
+    });
+  });
 });
 
 module.exports = router;

@@ -2,10 +2,14 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const cors = require('cors');
-const passport = require('passport');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const dbconfig = require('./db/config');
+
+// Authentication
+var session = require('express-session');
+var passport = require('passport');
 
 // Get routes
 const users = require('./routes/users');
@@ -33,6 +37,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Cookie parser
+app.use(cookieParser());
+
+
 // Set routes
 app.use('/users', users);
 app.use('/api', api);
@@ -41,6 +49,27 @@ app.use('/api', api);
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+
+// Session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
+//
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function (err, user) {
+//     done(err, user);
+//   });
+// });
 
 // Get port
 const port = process.env.PORT || '3000';

@@ -26,7 +26,14 @@ export class LoginComponent implements OnInit {
     };
 
     this.authenticateService.authenticateUser(user).subscribe(data => {
-
+      if(data.success) {
+        this.authenticateService.storeUserData(data.token, data.user);
+        this.router.navigate(['profile']);
+      } else {
+        console.log(data.message);
+        this.router.navigate(['authresults'])
+        // NOTE: notify error to user here
+      }
     });
   }
 }

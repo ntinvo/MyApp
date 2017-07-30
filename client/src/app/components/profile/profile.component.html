@@ -1,5 +1,7 @@
-<div class="profile">
-  <p>
-    profile works!
-  </p>
+<div class="container profile" *ngIf="user">
+  <h2 class="page_header">{{ user.firstname }} {{ user.lastname }}</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Username: {{ user.username }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+  </ul>
 </div>

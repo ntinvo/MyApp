@@ -15,6 +15,10 @@ router.get('/', (req, res, next) => {
 //   res.send('Catch users route');
 // });
 
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  res.json({user: req.user});
+});
+
 // users/register route
 router.post('/register', (req, res, next) => {
   let user = new User({
@@ -80,7 +84,7 @@ router.post('/login', function(req, res, next) {
 
         return res.json({
           success: true,
-          token: 'MYAPP ' + token,
+          token: 'JWT ' + token,
           user: {
             firstname: user.firstname,
             lastname: user.lastname,

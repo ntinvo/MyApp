@@ -10,7 +10,7 @@ module.exports = function(passport) {
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
     // NOTE: debug here
     console.log(jwt_payload);
-      User.getUserByEmail(jwt_payload.email, (err, user) => {
+      User.getUserByEmail(jwt_payload._doc.email, (err, user) => {
           if (err) {
               return done(err, false);
           }

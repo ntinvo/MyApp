@@ -53,5 +53,4 @@ export class AuthenticateService {
     this.user = null;
     localStorage.clear();
   }
-
 }

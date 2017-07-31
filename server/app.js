@@ -40,14 +40,33 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Cookie parser
 app.use(cookieParser());
 
-
 // Set routes
 app.use('/users', users);
 app.use('/api', api);
 
-// Catch routes
-app.get('/', (req, res) => {
+// Catch routes (authentication result)
+app.get('/authresults', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+// Catch routes (blog)
+app.get('/blog', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+// Catch routes (dashboard)
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+// Catch routes (profile)
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+// Catch error routes
+app.get('*', (req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Session
@@ -59,17 +78,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
-
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function (err, user) {
-//     done(err, user);
-//   });
-// });
 
 // Get port
 const port = process.env.PORT || '3000';

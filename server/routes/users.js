@@ -10,11 +10,7 @@ router.get('/', (req, res, next) => {
   res.send('Catch users route');
 });
 
-// users/profile route
-// router.get('/profile', passport.authenticate(), (req, res, next) => {
-//   res.send('Catch users route');
-// });
-
+// Get profile
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   res.json({user: req.user});
 });
@@ -43,7 +39,6 @@ router.post('/register', (req, res, next) => {
     }
   });
 });
-
 
 // Passport functions
 passport.serializeUser(function(user, done) {

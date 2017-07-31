@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthResultsComponent } from './components/auth-results/auth-results.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Routes
 const appRoutes: Routes = [
@@ -27,7 +28,9 @@ const appRoutes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]},
-  { path: 'authresults', component: AuthResultsComponent }
+  { path: 'authresults', component: AuthResultsComponent },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -41,7 +44,8 @@ const appRoutes: Routes = [
     BlogComponent,
     LoginComponent,
     RegisterComponent,
-    AuthResultsComponent
+    AuthResultsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

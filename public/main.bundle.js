@@ -91,6 +91,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_register_register_component__ = __webpack_require__("../../../../../src/app/components/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_auth_results_auth_results_component__ = __webpack_require__("../../../../../src/app/components/auth-results/auth-results.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__guards_authentication_guard__ = __webpack_require__("../../../../../src/app/guards/authentication.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/components/page-not-found/page-not-found.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -118,13 +119,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // Routes
 var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_9__components_home_home_component__["a" /* HomeComponent */] },
     { path: 'blog', component: __WEBPACK_IMPORTED_MODULE_13__components_blog_blog_component__["a" /* BlogComponent */] },
     { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_10__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_authentication_guard__["a" /* AuthenticationGuard */]] },
     { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_11__components_dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_17__guards_authentication_guard__["a" /* AuthenticationGuard */]] },
-    { path: 'authresults', component: __WEBPACK_IMPORTED_MODULE_16__components_auth_results_auth_results_component__["a" /* AuthResultsComponent */] }
+    { path: 'authresults', component: __WEBPACK_IMPORTED_MODULE_16__components_auth_results_auth_results_component__["a" /* AuthResultsComponent */] },
+    { path: '404', component: __WEBPACK_IMPORTED_MODULE_18__components_page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] },
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_18__components_page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -143,7 +147,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__components_blog_blog_component__["a" /* BlogComponent */],
             __WEBPACK_IMPORTED_MODULE_14__components_login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_15__components_register_register_component__["a" /* RegisterComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__components_auth_results_auth_results_component__["a" /* AuthResultsComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__components_auth_results_auth_results_component__["a" /* AuthResultsComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__components_page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -621,6 +626,67 @@ NavbarComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=navbar.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/page-not-found/page-not-found.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".page-not-found {\n  margin-top: 60px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/page-not-found/page-not-found.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page-not-found container\">\n  <p>page not found works</p>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/page-not-found/page-not-found.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNotFoundComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PageNotFoundComponent = (function () {
+    function PageNotFoundComponent() {
+    }
+    PageNotFoundComponent.prototype.ngOnInit = function () {
+    };
+    return PageNotFoundComponent;
+}());
+PageNotFoundComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-page-not-found',
+        template: __webpack_require__("../../../../../src/app/components/page-not-found/page-not-found.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/page-not-found/page-not-found.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], PageNotFoundComponent);
+
+//# sourceMappingURL=page-not-found.component.js.map
 
 /***/ }),
 

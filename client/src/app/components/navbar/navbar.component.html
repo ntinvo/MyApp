@@ -14,11 +14,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" -->
-        <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
-        <li><a [routerLink]="['/profile']">Profile</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#register-modal">Register</a></li>
-        <li><a href="#" (click)="logoutSubmit()">Logout</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/profile']">Profile</a></li>
+        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#register-modal">Register</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a href="#" (click)="logoutSubmit()">Logout</a></li>
       </ul>
     </div>
   </div>

@@ -19,13 +19,14 @@ import { BlogComponent } from './components/blog/blog.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthResultsComponent } from './components/auth-results/auth-results.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 // Routes
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'blog', component: BlogComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]},
   { path: 'authresults', component: AuthResultsComponent }
 ];
 
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [ ValidateService, AuthenticateService ],
+  providers: [ ValidateService, AuthenticateService, AuthenticationGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

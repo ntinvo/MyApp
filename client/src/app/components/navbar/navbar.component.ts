@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,13 @@ export class NavbarComponent implements OnInit {
 
   logoutSubmit() {
     this.authenticateService.logout();
-    this.router.navigate(['/authresults']);
+    swal({
+      title: 'Logged Out',
+      text: 'You have logged out successfully.',
+      type: 'success',
+      confirmButtonText: 'Cya!'
+    });
+    this.router.navigate(['']);
     return false;
   }
 }

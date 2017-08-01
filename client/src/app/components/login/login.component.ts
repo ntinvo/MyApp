@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Router } from '@angular/router';
+import { AuthResultsComponent } from '../auth-results/auth-results.component';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
+
+@NgModule({
+  declarations: [ AuthResultsComponent ]
+})
+
 export class LoginComponent implements OnInit {
   email: String;
   password: String;
@@ -28,11 +36,20 @@ export class LoginComponent implements OnInit {
     this.authenticateService.authenticateUser(user).subscribe(data => {
       if(data.success) {
         this.authenticateService.storeUserData(data.token, data.user);
+        swal({
+          title: 'Logged In',
+          text: 'You have logged in successfully',
+          type: 'success',
+          confirmButtonText: 'Yay!'
+        });
         this.router.navigate(['dashboard']);
       } else {
-        console.log(data.message);
-        this.router.navigate(['authresults'])
-        // NOTE: notify error to user here
+        swal({
+          title: 'Error!',
+          text: 'Invalid email or password',
+          type: 'error',
+          confirmButtonText: 'Cool'
+        });
       }
     });
   }

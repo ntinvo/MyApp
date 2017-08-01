@@ -9,6 +9,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  changeStyle: Boolean;
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logoutSubmit() {
+    this.changeStyle = false;
     this.authenticateService.logout();
     swal({
       title: 'Logged Out',
@@ -28,5 +30,33 @@ export class NavbarComponent implements OnInit {
     });
     this.router.navigate(['']);
     return false;
+  }
+
+  changeNavbarTextColor(event) {
+    this.changeStyle = true;
+  }
+
+  brandClicked() {
+    this.changeStyle = false;
+  }
+
+  blogClicked() {
+    this.changeStyle = true;
+  }
+
+  dashboardClicked() {
+    this.changeStyle = true;
+  }
+
+  profileClicked() {
+    this.changeStyle = true;
+  }
+
+  getStyle() {
+    if(this.changeStyle) {
+      return '#2ecc71';
+    } else {
+      return '#fff';
+    }
   }
 }

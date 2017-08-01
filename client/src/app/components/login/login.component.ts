@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Router } from '@angular/router';
@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
   email: String;
   password: String;
 
+  @Output()
+  logginButtonClicked: EventEmitter<any> = new EventEmitter();
+
   constructor(
     private authenticateService: AuthenticateService,
     private router: Router
@@ -26,6 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
   loginSubmit() {
     const user = {
@@ -36,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.authenticateService.authenticateUser(user).subscribe(data => {
       if(data.success) {
         this.authenticateService.storeUserData(data.token, data.user);
+        this.logginButtonClicked.emit(null);
         swal({
           title: 'Logged In',
           text: 'You have logged in successfully',

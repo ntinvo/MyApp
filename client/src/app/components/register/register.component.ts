@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   registerSubmit() {
     // Validation user inputs
-    if(this.email == undefined || this.username == undefined || this.password == undefined || this.password2 == undefined) {
+    if(this.email == undefined || this.username == undefined || this.password == undefined) {
       swal({
         title: 'Error',
         text: 'username, email, and password cannot be blank',

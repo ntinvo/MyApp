@@ -2,3 +2,7 @@
   outline: none;
   border: 0;
 }
+
+nav.navbar.navbar-default.navbar-fixed-top {
+    background: none;
+}

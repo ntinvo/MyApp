@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       title: 'Logged Out',
       text: 'You have logged out successfully.',
       type: 'success',
-      confirmButtonText: 'Cya!'
+      confirmButtonText: 'Cya!',
     });
     this.router.navigate(['']);
     return false;

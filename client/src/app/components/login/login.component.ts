@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           title: 'Logged In',
           text: 'You have logged in successfully',
           type: 'success',
-          confirmButtonText: 'Yay!'
+          confirmButtonText: 'Yay!',
         });
         this.router.navigate(['dashboard']);
       } else {
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
           title: 'Error!',
           text: 'Invalid email or password',
           type: 'error',
-          confirmButtonText: 'Cool'
+          confirmButtonText: 'Cool',
         });
       }
     });

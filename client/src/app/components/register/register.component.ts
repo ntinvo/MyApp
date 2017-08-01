@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -20,20 +21,40 @@ export class RegisterComponent implements OnInit {
     private validateService: ValidateService,
     private authenticateService: AuthenticateService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
   }
 
   registerSubmit() {
     // Validation user inputs
+    if(this.email == undefined || this.username == undefined || this.password == undefined || this.password2 == undefined) {
+      swal({
+        title: 'Error',
+        text: 'username, email, and password cannot be blank',
+        type: 'warning',
+        confirmButtonText: 'Close',
+      });
+      return false;
+    }
+
     if(!this.validateService.validateEmail(this.email)) {
-      console.log('Invalid email');
+      swal({
+        title: 'Error',
+        text: 'Please enter a valid email address',
+        type: 'warning',
+        confirmButtonText: 'Close',
+      });
       return false;
     }
 
     if(!this.validateService.validatePasswords(this.password, this.password2)) {
-      console.log('Passwords don\'t match');
+      swal({
+        title: 'Error',
+        text: 'Passwords do not match',
+        type: 'warning',
+        confirmButtonText: 'Close',
+      });
       return false;
     }
 

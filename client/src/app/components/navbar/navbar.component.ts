@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     this.authenticateService.logout();
     swal({
       title: 'Logged Out',
-      text: 'You have logged out successfully.',
+      text: 'You have logged out successfully',
       type: 'success',
       confirmButtonText: 'Cya!',
     });

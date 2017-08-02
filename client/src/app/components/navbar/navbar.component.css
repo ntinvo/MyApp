@@ -4,5 +4,12 @@
 }
 
 nav.navbar.navbar-default.navbar-fixed-top {
-    background: none;
+  background: none;
+}
+
+.fa-chevron-circle-down {
+  position: absolute;
+  bottom: 10%;
+  text-align: center;
+  color: #d35400;
 }

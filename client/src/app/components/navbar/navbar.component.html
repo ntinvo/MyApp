@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a [routerLink]="['/']" class="navbar-brand" [style.color]="getStyle()" (click)="brandClicked()">APP</a>
+      <a [routerLink]="['/']" class="navbar-brand" [style.color]="getStyle()" (click)="brandClicked()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">APP</a>
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -10,15 +10,15 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['/blog']" [style.color]="getStyle()" (click)="blogClicked()">BLOG</a></li>
+        <li><a [routerLink]="['/blog']" [style.color]="getStyle()" (click)="blogClicked()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">BLOG</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" -->
-        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/dashboard']" [style.color]="getStyle()" (click)="dashboardClicked()">DASHBOARD</a></li>
-        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/profile']" [style.color]="getStyle()" (click)="profileClicked()">PROFILE</a></li>
-        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#login-modal" [style.color]="getStyle()">LOGIN</a></li>
-        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#register-modal" [style.color]="getStyle()">REGISTER</a></li>
-        <li *ngIf="authenticateService.loggedIn()"><a href="#" (click)="logoutSubmit()" [style.color]="getStyle()">LOGOUT</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/dashboard']" [style.color]="getStyle()" (click)="dashboardClicked()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">DASHBOARD</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a [routerLink]="['/profile']" [style.color]="getStyle()" (click)="profileClicked()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">PROFILE</a></li>
+        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#login-modal" [style.color]="getStyle()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">LOGIN</a></li>
+        <li *ngIf="!authenticateService.loggedIn()"><a href="#" data-toggle="modal" data-target="#register-modal" [style.color]="getStyle()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">REGISTER</a></li>
+        <li *ngIf="authenticateService.loggedIn()"><a href="#" (click)="logoutSubmit()" [style.color]="getStyle()" [@navMenuAnimations]="state" (mouseover)="animateMenuToggle()" (mouseleave)="animateMenuToggle()">LOGOUT</a></li>
       </ul>
     </div>
   </div>

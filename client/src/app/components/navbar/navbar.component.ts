@@ -2,14 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  animations: [
+    trigger('navMenuAnimations', [
+      state('inactive', style({
+        color: '#fff',
+      })),
+      state('active', style({
+        color: 'red',
+      })),
+      transition('inactive <=> active', animate('250ms'))
+    ])
+  ]
 })
 export class NavbarComponent implements OnInit {
   changeStyle: Boolean;
+  state: string = 'inactive';
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -30,6 +43,10 @@ export class NavbarComponent implements OnInit {
     });
     this.router.navigate(['']);
     return false;
+  }
+
+  animateMenuToggle() {
+    this.state = (this.state === 'active'? 'inactive' : 'active');
   }
 
   changeNavbarTextColor(event) {
